@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 
 class CoreDataManager {
+    
     static let shared = CoreDataManager()
     
     let persistentContainer: NSPersistentContainer
@@ -25,9 +26,7 @@ class CoreDataManager {
     var context: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
-    
-    // MARK: - Core Data Saving support
-    
+        
     func saveContext () {
         if context.hasChanges {
             do {

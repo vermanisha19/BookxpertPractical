@@ -8,10 +8,77 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="5k5-9A-THx">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" interactionActivityTrackingBaseName="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yPL-OE-mLJ" customClass="HomeViewController" customModule="BookxpertPractical" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rjx-Dw-cbv">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4vV-IS-5so">
+                                <rect key="frame" x="10" y="124" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="GNZ-BF-vpc"/>
+                                    <constraint firstAttribute="width" secondItem="4vV-IS-5so" secondAttribute="height" id="Y0C-SM-xny"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1Sl-OJ-1pE">
+                                <rect key="frame" x="110" y="141" width="283" height="46"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xY1-qE-iwq">
+                                        <rect key="frame" x="0.0" y="0.0" width="283" height="23"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wcm-4s-1al">
+                                        <rect key="frame" x="0.0" y="23" width="283" height="23"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="van-bE-4Rj">
+                                <rect key="frame" x="323" y="69" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="BXP-UY-Fmz"/>
+                                    <constraint firstAttribute="width" secondItem="van-bE-4Rj" secondAttribute="height" id="dFe-At-exk"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="iphone.and.arrow.right.outward" catalog="system"/>
+                                <connections>
+                                    <action selector="tappedOnLogoutBtn:" destination="yPL-OE-mLJ" eventType="touchUpInside" id="C3K-1J-o99"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Dnp-D7-AEe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1Sl-OJ-1pE" firstAttribute="centerY" secondItem="4vV-IS-5so" secondAttribute="centerY" id="5lD-Nb-6lH"/>
+                            <constraint firstItem="1Sl-OJ-1pE" firstAttribute="leading" secondItem="4vV-IS-5so" secondAttribute="trailing" constant="20" id="90D-u0-dT2"/>
+                            <constraint firstItem="van-bE-4Rj" firstAttribute="top" secondItem="Dnp-D7-AEe" secondAttribute="top" constant="10" id="NEu-q2-UQA"/>
+                            <constraint firstItem="Dnp-D7-AEe" firstAttribute="trailing" secondItem="1Sl-OJ-1pE" secondAttribute="trailing" id="PwS-jv-58s"/>
+                            <constraint firstItem="4vV-IS-5so" firstAttribute="leading" secondItem="Dnp-D7-AEe" secondAttribute="leading" constant="10" id="Srh-je-fzq"/>
+                            <constraint firstItem="4vV-IS-5so" firstAttribute="top" secondItem="van-bE-4Rj" secondAttribute="bottom" constant="5" id="dhb-Od-h6J"/>
+                            <constraint firstItem="Dnp-D7-AEe" firstAttribute="trailing" secondItem="van-bE-4Rj" secondAttribute="trailing" constant="20" id="ry0-9c-yU6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailLbl" destination="Wcm-4s-1al" id="FiF-35-bOC"/>
+                        <outlet property="nameLbl" destination="xY1-qE-iwq" id="vzQ-y1-nm1"/>
+                        <outlet property="userImage" destination="4vV-IS-5so" id="Vq6-Hn-cBA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SbT-KA-0nq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-698" y="-23"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BookxpertPractical" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="BookxpertPractical" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -42,6 +109,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="iphone.and.arrow.right.outward" catalog="system" width="125" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

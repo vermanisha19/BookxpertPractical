@@ -9,8 +9,6 @@ import UIKit
 import GoogleSignIn
 import FirebaseCore
 import FirebaseAuth
-//import FirebaseAuth
-//import Firebase
 
 class ViewController: UIViewController {
 
@@ -53,6 +51,7 @@ class ViewController: UIViewController {
                 
                 if let user = authResult?.user {
                     print("Firebase Sign-In success: \(user.displayName ?? "")")
+                    self.navigateToHome()
                     self.showToast(message: "Successfully Signed In")
                     self.viewModel.saveUserToCoreData(user: user)
                 }
@@ -60,4 +59,22 @@ class ViewController: UIViewController {
         }
     }
 
+    private func navigateToHome() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let homeVC = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
+        let navVC = UINavigationController(rootViewController: homeVC)
+
+        if let window = UIApplication.shared.connectedScenes
+               .compactMap({ $0 as? UIWindowScene })
+               .first?.windows.first {
+               window.rootViewController = navVC
+               window.makeKeyAndVisible()
+
+               UIView.transition(with: window,
+                                 duration: 0.5,
+                                 options: .transitionFlipFromRight,
+                                 animations: nil,
+                                 completion: nil)
+           }
+    }
 }

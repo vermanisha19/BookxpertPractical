@@ -19,4 +19,16 @@ class ViewModel {
         CoreDataManager.shared.saveContext()
     }
     
+    func fetchSavedUser() -> SignInUserDetails? {
+        let fetchRequest: NSFetchRequest<SignInUserDetails> = SignInUserDetails.fetchRequest()
+
+        do {
+            let users = try CoreDataManager.shared.context.fetch(fetchRequest)
+            return users.first
+        } catch {
+            print("Failed to fetch user from Core Data: \(error)")
+            return nil
+        }
+    }
+
 }
