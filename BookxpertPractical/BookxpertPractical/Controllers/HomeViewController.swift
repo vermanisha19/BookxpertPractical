@@ -51,6 +51,12 @@ class HomeViewController: UIViewController {
         }
     }
     
+    @IBAction private func showImageList(_ sender: UIButton) {
+        if let imageListVC = UIStoryboard.main.get(ImageListViewController.self) {
+            self.navigationController?.pushViewController(imageListVC, animated: true)
+        }
+    }
+    
     private func navigateToViewController() {
         let loginVC = UIStoryboard.main.get(ViewController.self)
         

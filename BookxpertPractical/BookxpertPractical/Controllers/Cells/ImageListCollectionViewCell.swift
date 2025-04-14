@@ -9,4 +9,9 @@ import UIKit
 
 class ImageListCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet private weak var imageView: UIImageView!
+    
+    func setImage(with image: UIImage) {
+        imageView.image = image
+    }
 }

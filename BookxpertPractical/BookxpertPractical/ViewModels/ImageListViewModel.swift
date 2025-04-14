@@ -5,4 +5,10 @@
 //  Created by MACM13 on 14/04/25.
 //
 
-import Foundation
+import UIKit
+
+class ImageListViewModel {
+    
+    var selectedImages: [UIImage] = []
+    let reuseIdentifier = "ImageListCell"
+}

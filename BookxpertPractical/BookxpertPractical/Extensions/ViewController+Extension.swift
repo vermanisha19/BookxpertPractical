@@ -10,22 +10,45 @@ import UIKit
 
 extension UIViewController {
     
-    func showToast(message : String, font: UIFont = .systemFont(ofSize: 12)) {
-        
-        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-100, width: 150, height: 35))
-        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        toastLabel.textColor = UIColor.white
+    func showToast(message: String, withDuration: Double = 1, font: UIFont = .systemFont(ofSize: 12)) {
+        let toastContainer = UIView()
+        toastContainer.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        toastContainer.alpha = 0.0
+        toastContainer.layer.cornerRadius = 20
+        toastContainer.clipsToBounds = true
+
+        let toastLabel = UILabel()
+        toastLabel.textColor = .white
+        toastLabel.textAlignment = .center
         toastLabel.font = font
-        toastLabel.textAlignment = .center;
         toastLabel.text = message
-        toastLabel.alpha = 1.0
-        toastLabel.layer.cornerRadius = 10;
-        toastLabel.clipsToBounds  =  true
-        self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
-            toastLabel.alpha = 0.0
-        }, completion: {(isCompleted) in
-            toastLabel.removeFromSuperview()
+        toastLabel.numberOfLines = 0
+
+        toastContainer.addSubview(toastLabel)
+        self.view.addSubview(toastContainer)
+
+        toastLabel.translatesAutoresizingMaskIntoConstraints = false
+        toastContainer.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            toastLabel.leadingAnchor.constraint(equalTo: toastContainer.leadingAnchor, constant: 10),
+            toastLabel.trailingAnchor.constraint(equalTo: toastContainer.trailingAnchor, constant: -10),
+            toastLabel.topAnchor.constraint(equalTo: toastContainer.topAnchor, constant: 10),
+            toastLabel.bottomAnchor.constraint(equalTo: toastContainer.bottomAnchor, constant: -10),
+
+            toastContainer.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 40),
+            toastContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -40),
+            toastContainer.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -40)
+        ])
+
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+            toastContainer.alpha = 1.0
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.3, delay: withDuration, options: .curveEaseOut, animations: {
+                toastContainer.alpha = 0.0
+            }, completion: { _ in
+                toastContainer.removeFromSuperview()
+            })
         })
     }
 }
