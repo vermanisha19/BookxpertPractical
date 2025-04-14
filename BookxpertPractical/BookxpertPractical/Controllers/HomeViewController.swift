@@ -8,12 +8,13 @@
 import UIKit
 import FirebaseAuth
 import GoogleSignIn
+import PDFKit
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var nameLbl: UILabel!
-    @IBOutlet weak var emailLbl: UILabel!
+    @IBOutlet private weak var userImage: UIImageView!
+    @IBOutlet private weak var nameLbl: UILabel!
+    @IBOutlet private weak var emailLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +30,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    @IBAction func tappedOnLogoutBtn(_ sender: Any) {
+    @IBAction private func tappedOnLogoutBtn(_ sender: Any) {
         do {
             GIDSignIn.sharedInstance.signOut()
             try Auth.auth().signOut()
@@ -40,9 +41,18 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func navigateToViewController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let loginVC = storyboard.instantiateViewController(withIdentifier: "ViewController")
+    @IBAction private func openPDFVIew(_ sender: UIButton) {
+        let pdfURL = "https://fssservices.bookxpert.co/GeneratedPDF/Companies/nadc/2024-2025/BalanceSheet.pdf"
+        if let pdfVC = UIStoryboard.main.get(PDFDocumentViewController.self),
+           let url = URL(string: pdfURL) {
+            pdfVC.modalPresentationStyle = .fullScreen
+            pdfVC.pdfURL = url
+            self.present(pdfVC, animated: true, completion: nil)
+        }
+    }
+    
+    private func navigateToViewController() {
+        let loginVC = UIStoryboard.main.get(ViewController.self)
         
         if let window = UIApplication.shared.connectedScenes
             .compactMap({ $0 as? UIWindowScene })

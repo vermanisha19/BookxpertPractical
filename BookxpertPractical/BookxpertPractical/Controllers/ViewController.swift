@@ -11,8 +11,8 @@ import FirebaseCore
 import FirebaseAuth
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var signInButton: GIDSignInButton!
+    
+    @IBOutlet private weak var signInButton: GIDSignInButton!
     
     private var viewModel = ViewModel()
     
@@ -20,8 +20,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-    @IBAction func signInWithGoogle(_ sender: Any) {
+    
+    @IBAction private func signInWithGoogle(_ sender: Any) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         
         let config = GIDConfiguration(clientID: clientID)
@@ -58,23 +58,22 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
     private func navigateToHome() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let homeVC = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
+        guard let homeVC = UIStoryboard.main.get(HomeViewController.self) else { return }
         let navVC = UINavigationController(rootViewController: homeVC)
-
+        
         if let window = UIApplication.shared.connectedScenes
-               .compactMap({ $0 as? UIWindowScene })
-               .first?.windows.first {
-               window.rootViewController = navVC
-               window.makeKeyAndVisible()
-
-               UIView.transition(with: window,
-                                 duration: 0.5,
-                                 options: .transitionFlipFromRight,
-                                 animations: nil,
-                                 completion: nil)
-           }
+            .compactMap({ $0 as? UIWindowScene })
+            .first?.windows.first {
+            window.rootViewController = navVC
+            window.makeKeyAndVisible()
+            
+            UIView.transition(with: window,
+                              duration: 0.5,
+                              options: .transitionFlipFromRight,
+                              animations: nil,
+                              completion: nil)
+        }
     }
 }

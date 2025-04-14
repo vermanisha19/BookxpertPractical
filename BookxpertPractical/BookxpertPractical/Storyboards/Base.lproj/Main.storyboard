@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,52 +17,80 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4vV-IS-5so">
-                                <rect key="frame" x="10" y="124" width="80" height="80"/>
+                                <rect key="frame" x="10" y="111" width="80" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="GNZ-BF-vpc"/>
-                                    <constraint firstAttribute="width" secondItem="4vV-IS-5so" secondAttribute="height" id="Y0C-SM-xny"/>
+                                    <constraint firstAttribute="width" secondItem="4vV-IS-5so" secondAttribute="height" multiplier="1:1" id="DWp-QP-QG2"/>
+                                    <constraint firstAttribute="width" constant="80" id="sif-SC-IQu"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1Sl-OJ-1pE">
-                                <rect key="frame" x="110" y="141" width="283" height="46"/>
+                                <rect key="frame" x="109.99999999999999" y="128" width="49.333333333333329" height="46"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xY1-qE-iwq">
-                                        <rect key="frame" x="0.0" y="0.0" width="283" height="23"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="49.333333333333336" height="23"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wcm-4s-1al">
-                                        <rect key="frame" x="0.0" y="23" width="283" height="23"/>
+                                        <rect key="frame" x="0.0" y="23" width="49.333333333333336" height="23"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="van-bE-4Rj">
-                                <rect key="frame" x="323" y="69" width="50" height="50"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8Aq-c3-8yz" userLabel="Buttons Stack View">
+                                <rect key="frame" x="262" y="69" width="116" height="32"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQ3-l6-uFI" userLabel="PDF button">
+                                        <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Open PDF" image="document.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="openPDFVIew:" destination="yPL-OE-mLJ" eventType="touchUpInside" id="S26-OG-8Au"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXl-h3-4qX" userLabel="Image Button">
+                                        <rect key="frame" x="42" y="0.0" width="32" height="32"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Image List" image="photo" catalog="system"/>
+                                        <connections>
+                                            <action selector="showImageList:" destination="yPL-OE-mLJ" eventType="touchUpInside" id="3EI-fv-kwd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="van-bE-4Rj" userLabel="LogoutButton">
+                                        <rect key="frame" x="84" y="0.0" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="Q1u-sy-zCK"/>
+                                            <constraint firstAttribute="width" secondItem="van-bE-4Rj" secondAttribute="height" id="TBE-Py-b1h"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="iphone.and.arrow.right.outward" catalog="system"/>
+                                        <connections>
+                                            <action selector="tappedOnLogoutBtn:" destination="yPL-OE-mLJ" eventType="touchUpInside" id="C3K-1J-o99"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="BXP-UY-Fmz"/>
-                                    <constraint firstAttribute="width" secondItem="van-bE-4Rj" secondAttribute="height" id="dFe-At-exk"/>
+                                    <constraint firstItem="OQ3-l6-uFI" firstAttribute="width" secondItem="van-bE-4Rj" secondAttribute="width" id="5fY-Eg-HcZ"/>
+                                    <constraint firstItem="OQ3-l6-uFI" firstAttribute="height" secondItem="van-bE-4Rj" secondAttribute="height" id="8aS-sC-mMX"/>
+                                    <constraint firstItem="aXl-h3-4qX" firstAttribute="height" secondItem="OQ3-l6-uFI" secondAttribute="height" id="otn-sC-Yy9"/>
+                                    <constraint firstItem="aXl-h3-4qX" firstAttribute="width" secondItem="OQ3-l6-uFI" secondAttribute="width" id="qjg-pD-4pL"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="iphone.and.arrow.right.outward" catalog="system"/>
-                                <connections>
-                                    <action selector="tappedOnLogoutBtn:" destination="yPL-OE-mLJ" eventType="touchUpInside" id="C3K-1J-o99"/>
-                                </connections>
-                            </button>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Dnp-D7-AEe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="1Sl-OJ-1pE" firstAttribute="centerY" secondItem="4vV-IS-5so" secondAttribute="centerY" id="5lD-Nb-6lH"/>
-                            <constraint firstItem="1Sl-OJ-1pE" firstAttribute="leading" secondItem="4vV-IS-5so" secondAttribute="trailing" constant="20" id="90D-u0-dT2"/>
-                            <constraint firstItem="van-bE-4Rj" firstAttribute="top" secondItem="Dnp-D7-AEe" secondAttribute="top" constant="10" id="NEu-q2-UQA"/>
-                            <constraint firstItem="Dnp-D7-AEe" firstAttribute="trailing" secondItem="1Sl-OJ-1pE" secondAttribute="trailing" id="PwS-jv-58s"/>
-                            <constraint firstItem="4vV-IS-5so" firstAttribute="leading" secondItem="Dnp-D7-AEe" secondAttribute="leading" constant="10" id="Srh-je-fzq"/>
-                            <constraint firstItem="4vV-IS-5so" firstAttribute="top" secondItem="van-bE-4Rj" secondAttribute="bottom" constant="5" id="dhb-Od-h6J"/>
-                            <constraint firstItem="Dnp-D7-AEe" firstAttribute="trailing" secondItem="van-bE-4Rj" secondAttribute="trailing" constant="20" id="ry0-9c-yU6"/>
+                            <constraint firstItem="8Aq-c3-8yz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Dnp-D7-AEe" secondAttribute="leading" id="2T7-70-oAi"/>
+                            <constraint firstItem="1Sl-OJ-1pE" firstAttribute="centerY" secondItem="4vV-IS-5so" secondAttribute="centerY" id="5Ts-0z-6KG"/>
+                            <constraint firstItem="4vV-IS-5so" firstAttribute="top" secondItem="8Aq-c3-8yz" secondAttribute="bottom" constant="10" id="LXG-2L-C37"/>
+                            <constraint firstItem="8Aq-c3-8yz" firstAttribute="top" secondItem="Dnp-D7-AEe" secondAttribute="top" constant="10" id="WMF-hT-iB8"/>
+                            <constraint firstItem="Dnp-D7-AEe" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1Sl-OJ-1pE" secondAttribute="trailing" id="hdo-rY-GJd"/>
+                            <constraint firstItem="4vV-IS-5so" firstAttribute="leading" secondItem="Dnp-D7-AEe" secondAttribute="leading" constant="10" id="jKe-aE-OeM"/>
+                            <constraint firstItem="Dnp-D7-AEe" firstAttribute="trailing" secondItem="8Aq-c3-8yz" secondAttribute="trailing" constant="15" id="ktX-nc-CmE"/>
+                            <constraint firstItem="1Sl-OJ-1pE" firstAttribute="leading" secondItem="4vV-IS-5so" secondAttribute="trailing" constant="20" id="vmm-6R-oCf"/>
                         </constraints>
                     </view>
                     <connections>
@@ -73,7 +101,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SbT-KA-0nq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-698" y="-23"/>
+            <point key="canvasLocation" x="-714" y="-30"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -105,11 +133,58 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="76" y="-23"/>
+            <point key="canvasLocation" x="-1462" y="-30"/>
+        </scene>
+        <!--Document View Controller-->
+        <scene sceneID="Md8-m8-Aeg">
+            <objects>
+                <viewController storyboardIdentifier="PDFDocumentViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pYC-z1-zd0" customClass="PDFDocumentViewController" customModule="BookxpertPractical" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OAz-DO-HZG">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X3c-in-nJW">
+                                <rect key="frame" x="273" y="59" width="100" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="AVO-I6-F8r"/>
+                                    <constraint firstAttribute="width" constant="100" id="IIp-M6-sca"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Close"/>
+                                <connections>
+                                    <action selector="tappedOnCloseBtn:" destination="pYC-z1-zd0" eventType="touchUpInside" id="YOe-sC-S2O"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fEZ-lK-nRa">
+                                <rect key="frame" x="0.0" y="94" width="393" height="724"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="IZN-v6-Hrr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="X3c-in-nJW" firstAttribute="top" secondItem="IZN-v6-Hrr" secondAttribute="top" id="0gn-7e-dcv"/>
+                            <constraint firstItem="fEZ-lK-nRa" firstAttribute="leading" secondItem="IZN-v6-Hrr" secondAttribute="leading" id="E8B-q9-U9U"/>
+                            <constraint firstItem="fEZ-lK-nRa" firstAttribute="top" secondItem="X3c-in-nJW" secondAttribute="bottom" id="j53-wO-xMR"/>
+                            <constraint firstItem="IZN-v6-Hrr" firstAttribute="trailing" secondItem="X3c-in-nJW" secondAttribute="trailing" constant="20" id="ngy-T4-2H2"/>
+                            <constraint firstItem="IZN-v6-Hrr" firstAttribute="trailing" secondItem="fEZ-lK-nRa" secondAttribute="trailing" id="qQP-Pr-uZc"/>
+                            <constraint firstItem="IZN-v6-Hrr" firstAttribute="bottom" secondItem="fEZ-lK-nRa" secondAttribute="bottom" id="wp3-nH-ltc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pdfSubView" destination="fEZ-lK-nRa" id="vie-Kd-mSE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K1m-nq-YSa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1054" y="-707"/>
         </scene>
     </scenes>
     <resources>
+        <image name="document.fill" catalog="system" width="115" height="128"/>
         <image name="iphone.and.arrow.right.outward" catalog="system" width="125" height="128"/>
+        <image name="photo" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
