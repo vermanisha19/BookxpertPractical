@@ -7,15 +7,15 @@
 
 
 import UIKit
+import Alamofire
 
 extension UIImageView{
-
-func setImageFromURl(stringImageUrl url: String){
-
-      if let url = NSURL(string: url) {
-         if let data = NSData(contentsOf: url as URL) {
-            self.image = UIImage(data: data as Data)
-         }
-      }
-   }
+    
+    func setImageFromURl(stringImageUrl url: String){
+        AF.request(url).responseData { response in
+            if let data = response.value {
+                self.image = UIImage(data: data)
+            }
+        }
+    }
 }

@@ -80,21 +80,34 @@
                                     <constraint firstItem="aXl-h3-4qX" firstAttribute="width" secondItem="OQ3-l6-uFI" secondAttribute="width" id="qjg-pD-4pL"/>
                                 </constraints>
                             </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oae-h7-2Qa">
+                                <rect key="frame" x="0.0" y="221" width="393" height="577"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="yPL-OE-mLJ" id="zJa-xp-0SB"/>
+                                    <outlet property="delegate" destination="yPL-OE-mLJ" id="1Tx-qc-yfR"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Dnp-D7-AEe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="8Aq-c3-8yz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Dnp-D7-AEe" secondAttribute="leading" id="2T7-70-oAi"/>
+                            <constraint firstItem="oae-h7-2Qa" firstAttribute="leading" secondItem="Dnp-D7-AEe" secondAttribute="leading" id="3wQ-rT-TsW"/>
                             <constraint firstItem="1Sl-OJ-1pE" firstAttribute="centerY" secondItem="4vV-IS-5so" secondAttribute="centerY" id="5Ts-0z-6KG"/>
+                            <constraint firstItem="oae-h7-2Qa" firstAttribute="top" secondItem="4vV-IS-5so" secondAttribute="bottom" constant="30" id="J72-yD-Rov"/>
                             <constraint firstItem="4vV-IS-5so" firstAttribute="top" secondItem="8Aq-c3-8yz" secondAttribute="bottom" constant="10" id="LXG-2L-C37"/>
                             <constraint firstItem="8Aq-c3-8yz" firstAttribute="top" secondItem="Dnp-D7-AEe" secondAttribute="top" constant="10" id="WMF-hT-iB8"/>
+                            <constraint firstItem="Dnp-D7-AEe" firstAttribute="trailing" secondItem="oae-h7-2Qa" secondAttribute="trailing" id="aMh-6b-tj9"/>
                             <constraint firstItem="Dnp-D7-AEe" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1Sl-OJ-1pE" secondAttribute="trailing" id="hdo-rY-GJd"/>
                             <constraint firstItem="4vV-IS-5so" firstAttribute="leading" secondItem="Dnp-D7-AEe" secondAttribute="leading" constant="10" id="jKe-aE-OeM"/>
                             <constraint firstItem="Dnp-D7-AEe" firstAttribute="trailing" secondItem="8Aq-c3-8yz" secondAttribute="trailing" constant="15" id="ktX-nc-CmE"/>
                             <constraint firstItem="1Sl-OJ-1pE" firstAttribute="leading" secondItem="4vV-IS-5so" secondAttribute="trailing" constant="20" id="vmm-6R-oCf"/>
+                            <constraint firstItem="Dnp-D7-AEe" firstAttribute="bottom" secondItem="oae-h7-2Qa" secondAttribute="bottom" constant="20" id="wAn-En-TL7"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="deviceListTable" destination="oae-h7-2Qa" id="LUh-pB-Tu3"/>
                         <outlet property="emailLbl" destination="Wcm-4s-1al" id="FiF-35-bOC"/>
                         <outlet property="nameLbl" destination="xY1-qE-iwq" id="vzQ-y1-nm1"/>
                         <outlet property="userImage" destination="4vV-IS-5so" id="Vq6-Hn-cBA"/>

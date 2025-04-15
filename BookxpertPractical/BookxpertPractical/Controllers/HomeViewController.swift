@@ -15,6 +15,9 @@ class HomeViewController: UIViewController {
     @IBOutlet private weak var userImage: UIImageView!
     @IBOutlet private weak var nameLbl: UILabel!
     @IBOutlet private weak var emailLbl: UILabel!
+    @IBOutlet private weak var deviceListTable: UITableView!
+    
+    private var viewModel = HomeViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +25,23 @@ class HomeViewController: UIViewController {
     }
     
     private func setupUI() {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         if let currentUser = Auth.auth().currentUser {
-            self.nameLbl.text = currentUser.displayName
-            self.emailLbl.text = currentUser.email
-            self.userImage.setImageFromURl(stringImageUrl: currentUser.photoURL?.absoluteString ?? "")
+            nameLbl.text = currentUser.displayName
+            emailLbl.text = currentUser.email
+            userImage.setImageFromURl(stringImageUrl: currentUser.photoURL?.absoluteString ?? "")
         }
+        
+        let nib = UINib(nibName: "DeviceListTableViewCell", bundle: .main)
+        deviceListTable.register(nib, forCellReuseIdentifier: DeviceListTableViewCell.reuseIdentifier)
+        fetchDeviceData()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        userImage.layer.cornerRadius = userImage.frame.height / 2
+        userImage.clipsToBounds = true
     }
     
     @IBAction private func tappedOnLogoutBtn(_ sender: Any) {
@@ -71,6 +85,32 @@ class HomeViewController: UIViewController {
                               animations: nil,
                               completion: nil)
         }
+    }
+    
+    private func fetchDeviceData() {
+        Task {
+            do {
+                try await viewModel.fetchDeviceData()
+                deviceListTable.reloadData()
+            } catch {
+                showToast(message: error.localizedDescription)
+            }
+        }
+    }
+    
+}
+
+extension HomeViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.devices.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DeviceListTableViewCell.reuseIdentifier,
+                                                       for: indexPath) as? DeviceListTableViewCell else { return UITableViewCell() }
+        cell.setDetails(with: viewModel.devices[indexPath.row])
+        return cell
     }
     
 }
