@@ -35,7 +35,13 @@ class HomeViewController: UIViewController {
         deviceListTable.contentInset = .init(top: 0, left: 0, bottom: 30, right: 0)
         let nib = UINib(nibName: "DeviceListTableViewCell", bundle: .main)
         deviceListTable.register(nib, forCellReuseIdentifier: DeviceListTableViewCell.reuseIdentifier)
-        fetchDeviceData()
+        
+        let coreDataCount = viewModel.fetchDeviceInfoFromCoreData()
+        if coreDataCount <= 0 {
+            fetchDeviceData()
+        } else {
+            deviceListTable.reloadData()
+        }
     }
     
     override func viewWillLayoutSubviews() {
@@ -72,6 +78,10 @@ class HomeViewController: UIViewController {
         }
     }
     
+    @IBAction private func refreshData(_ sender: UIButton) {
+        fetchDeviceData()
+    }
+    
     private func navigateToViewController() {
         let loginVC = UIStoryboard.main.get(ViewController.self)
         
@@ -92,7 +102,7 @@ class HomeViewController: UIViewController {
         Task {
             do {
                 try await viewModel.fetchDeviceData()
-                viewModel.fetchDeviceInfoFromCoreData()
+                _ = viewModel.fetchDeviceInfoFromCoreData()
                 deviceListTable.reloadData()
             } catch {
                 showToast(message: error.localizedDescription)
@@ -102,7 +112,7 @@ class HomeViewController: UIViewController {
     
 }
 
-extension HomeViewController: UITableViewDataSource {
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.devices.count
@@ -113,6 +123,33 @@ extension HomeViewController: UITableViewDataSource {
                                                        for: indexPath) as? DeviceListTableViewCell else { return UITableViewCell() }
         cell.setDetails(with: viewModel.devices[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        let editVC = UIStoryboard.main.get(EditDeviceDetailsViewController.self)
+        if let editVC {
+            editVC.deviceDetails = viewModel.devices[indexPath.row]
+            editVC.updateDeviceDetails = { [weak self] in
+                guard let self, let details = editVC.deviceDetails else { return }
+                self.viewModel.updateDetails(with: details)
+                viewModel.devices[indexPath.row] = details
+                self.deviceListTable.reloadData()
+            }
+            navigationController?.pushViewController(editVC, animated: true)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            viewModel.deleteDetails(with: viewModel.devices[indexPath.row])
+            viewModel.devices.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
     }
     
 }
