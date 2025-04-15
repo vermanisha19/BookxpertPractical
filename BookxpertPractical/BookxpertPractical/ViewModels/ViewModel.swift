@@ -11,23 +11,25 @@ import FirebaseAuth
 
 class ViewModel {
     
-    func saveUserToCoreData(user: User) {
-        let newUser = SignInUserDetails(context: CoreDataManager.shared.context)
-        newUser.email = user.email
-        newUser.name = user.displayName
-        newUser.photoURL = user.photoURL?.absoluteString
-        CoreDataManager.shared.saveContext()
-    }
-    
-    func fetchSavedUser() -> SignInUserDetails? {
-        let fetchRequest: NSFetchRequest<SignInUserDetails> = SignInUserDetails.fetchRequest()
-
-        do {
-            let users = try CoreDataManager.shared.context.fetch(fetchRequest)
-            return users.first
-        } catch {
-            print("Failed to fetch user from Core Data: \(error)")
-            return nil
+    func saveUserDetails(user: User) {
+        if let userEmail = user.email {
+            let context = CoreDataManager.shared.context
+            
+            let fetchRequest = SignInUserDetails.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "email == %@", userEmail)
+            
+            let userData: SignInUserDetails
+            if let existingUser = try? context.fetch(fetchRequest).first {
+                userData = existingUser
+            } else {
+                userData = SignInUserDetails(context: context)
+                userData.email = user.email
+            }
+            
+            userData.name = user.displayName
+            userData.photoURL = user.photoURL?.absoluteString
+            
+            CoreDataManager.shared.saveContext()
         }
     }
 

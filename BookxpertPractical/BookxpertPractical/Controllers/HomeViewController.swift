@@ -32,6 +32,7 @@ class HomeViewController: UIViewController {
             userImage.setImageFromURl(stringImageUrl: currentUser.photoURL?.absoluteString ?? "")
         }
         
+        deviceListTable.contentInset = .init(top: 0, left: 0, bottom: 30, right: 0)
         let nib = UINib(nibName: "DeviceListTableViewCell", bundle: .main)
         deviceListTable.register(nib, forCellReuseIdentifier: DeviceListTableViewCell.reuseIdentifier)
         fetchDeviceData()
@@ -91,6 +92,7 @@ class HomeViewController: UIViewController {
         Task {
             do {
                 try await viewModel.fetchDeviceData()
+                viewModel.fetchDeviceInfoFromCoreData()
                 deviceListTable.reloadData()
             } catch {
                 showToast(message: error.localizedDescription)

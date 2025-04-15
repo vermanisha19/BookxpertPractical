@@ -18,26 +18,27 @@ class DeviceListTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func setDetails(with deviceInfo: DeviceModel) {
-        nameLbl.text = deviceInfo.name
+    func setDetails(with data: DeviceListDetails) {
+        nameLbl.text = data.name
         
         var descParts: [String] = []
-
-        if let data = deviceInfo.data {
-            if let description = data.description {
-                descParts.append(description)
-            }
-            if let color = data.color {
-                descParts.append("Color - \(color)")
-            }
-            if let capacity = data.capacity {
-                descParts.append("Capacity - \(capacity)")
-            }
-            if let generation = data.generation {
-                descParts.append("Generation - \(generation)")
-            }
+        
+        if let description = data.deviceDescription {
+            descParts.append(description)
         }
-
+        if let color = data.color {
+            descParts.append("Color - \(color)")
+        }
+        if let price = data.devicePrice {
+            descParts.append("Price - \(price)")
+        }
+        if let capacity = data.capacity {
+            descParts.append("Capacity - \(capacity)")
+        }
+        if let generation = data.generation {
+            descParts.append("Generation - \(generation)")
+        }
+        
         let desc = descParts.isEmpty ? "No Description" : descParts.joined(separator: "\n")
         descLbl.text = desc
     }

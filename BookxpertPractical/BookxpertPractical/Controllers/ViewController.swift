@@ -53,7 +53,7 @@ class ViewController: UIViewController {
                     print("Firebase Sign-In success: \(user.displayName ?? "")")
                     self.navigateToHome()
                     self.showToast(message: "Successfully Signed In")
-                    self.viewModel.saveUserToCoreData(user: user)
+                    self.viewModel.saveUserDetails(user: user)
                 }
             }
         }
