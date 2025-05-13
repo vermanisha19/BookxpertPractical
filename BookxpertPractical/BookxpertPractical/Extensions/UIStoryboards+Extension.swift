@@ -1,5 +1,5 @@
 //
-//  UiStoryboards+Extension.swift
+//  UIStoryboards+Extension.swift
 //  BookxpertPractical
 //
 //  Created by MACM13 on 14/04/25.

@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
     }
     
@@ -29,7 +30,7 @@ class HomeViewController: UIViewController {
         if let currentUser = Auth.auth().currentUser {
             nameLbl.text = currentUser.displayName
             emailLbl.text = currentUser.email
-            userImage.setImageFromURl(stringImageUrl: currentUser.photoURL?.absoluteString ?? "")
+            userImage.setImageFromURL(stringImageUrl: currentUser.photoURL?.absoluteString ?? "")
         }
         
         deviceListTable.contentInset = .init(top: 0, left: 0, bottom: 30, right: 0)
@@ -85,9 +86,7 @@ class HomeViewController: UIViewController {
     private func navigateToViewController() {
         let loginVC = UIStoryboard.main.get(ViewController.self)
         
-        if let window = UIApplication.shared.connectedScenes
-            .compactMap({ $0 as? UIWindowScene })
-            .first?.windows.first {
+        if let window = Device.window {
             window.rootViewController = loginVC
             window.makeKeyAndVisible()
             UIView.transition(with: window,
@@ -112,6 +111,7 @@ class HomeViewController: UIViewController {
     
 }
 
+//MARK: - UITableViewDataSource, UITableViewDelegate
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

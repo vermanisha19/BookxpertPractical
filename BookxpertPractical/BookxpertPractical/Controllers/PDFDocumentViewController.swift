@@ -12,7 +12,6 @@ import PDFKit
 class PDFDocumentViewController: UIViewController {
     
     @IBOutlet private weak var pdfSubView: UIView!
-    
     var pdfURL: URL?
     
     override func viewDidLoad() {
@@ -20,7 +19,7 @@ class PDFDocumentViewController: UIViewController {
         
         let pdfView = PDFView(frame: self.pdfSubView.bounds)
         pdfView.autoScales = true
-        self.pdfSubView.addSubview(pdfView)
+        pdfSubView.addSubview(pdfView)
         
         if let pdfURL, let document = PDFDocument(url: pdfURL) {
             pdfView.document = document

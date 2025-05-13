@@ -11,7 +11,7 @@ import Alamofire
 
 extension UIImageView{
     
-    func setImageFromURl(stringImageUrl url: String){
+    func setImageFromURL(stringImageUrl url: String){
         AF.request(url).responseData { response in
             if let data = response.value {
                 self.image = UIImage(data: data)

@@ -9,12 +9,14 @@ import Foundation
 
 // MARK: - DeviceModel
 struct DeviceModel: Codable {
+    
     let id, name: String
     let data: DeviceInfoResponse?
 }
 
 // MARK: - DeviceInfoResponse
 struct DeviceInfoResponse: Codable {
+    
     let dataColor, dataCapacity: String?
     let capacityGB: Int?
     let dataPrice: Double?
@@ -24,7 +26,7 @@ struct DeviceInfoResponse: Codable {
     let color, description, capacity: String?
     let screenSize: Double?
     let generation, price: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case dataColor = "color"
         case dataCapacity = "capacity"

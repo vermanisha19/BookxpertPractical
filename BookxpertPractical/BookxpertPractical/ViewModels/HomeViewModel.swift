@@ -21,11 +21,11 @@ class HomeViewModel {
         }
     }
     
-    func saveDeviceDetailsToCoreData(devices: [DeviceModel]) {
+    private func saveDeviceDetailsToCoreData(devices: [DeviceModel]) {
         let context = CoreDataManager.shared.context
+        let fetchRequest = DeviceListDetails.fetchRequest()
         
         for device in devices {
-            let fetchRequest = DeviceListDetails.fetchRequest()
             fetchRequest.predicate = NSPredicate(format: "id == %@", device.id)
             
             let data: DeviceListDetails

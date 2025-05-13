@@ -16,8 +16,9 @@ class APIHelper {
     
     func fetchAPIData<T: Decodable>(url: String) async throws -> T {
         let response = await AF.request(url)
-            .serializingDecodable(T.self).response
-
+            .serializingDecodable(T.self)
+            .response
+        
         switch response.result {
         case .success(let value):
             return value

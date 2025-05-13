@@ -13,12 +13,10 @@ import FirebaseAuth
 class ViewController: UIViewController {
     
     @IBOutlet private weak var signInButton: GIDSignInButton!
-    
     private var viewModel = ViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
     @IBAction private func signInWithGoogle(_ sender: Any) {
@@ -63,9 +61,7 @@ class ViewController: UIViewController {
         guard let homeVC = UIStoryboard.main.get(HomeViewController.self) else { return }
         let navVC = UINavigationController(rootViewController: homeVC)
         
-        if let window = UIApplication.shared.connectedScenes
-            .compactMap({ $0 as? UIWindowScene })
-            .first?.windows.first {
+        if let window = Device.window {
             window.rootViewController = navVC
             window.makeKeyAndVisible()
             

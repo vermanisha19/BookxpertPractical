@@ -28,9 +28,8 @@ class ViewModel {
             
             userData.name = user.displayName
             userData.photoURL = user.photoURL?.absoluteString
-            
             CoreDataManager.shared.saveContext()
         }
     }
-
+    
 }
